@@ -1,0 +1,806 @@
+[
+  {
+    "diagnosis": "Cone-Rod Dystrophy",
+    "confidence": 0.943,
+    "severity": "Moderate",
+    "stage": "المرحلة الثانية",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "severity": "Severe",
+        "percentage": 72
+      },
+      {
+        "name": "المستقبلات الضوئية",
+        "severity": "Moderate",
+        "percentage": 58
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "severity": "Mild",
+        "percentage": 34
+      },
+      {
+        "name": "النقرة المركزية",
+        "severity": "Severe",
+        "percentage": 81
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء مخطط كهربي للشبكية (ERG) للتأكيد",
+      "فحص جينومي لتحديد الطفرة الجينية المسببة",
+      "البدء بمكملات فيتامين A بجرعات علاجية محسوبة",
+      "متابعة دورية كل 6 أشهر لرصد التقدم"
+    ],
+    "processingTimeMs": 3547,
+    "modelVersion": "RetinaCRD-v2.1",
+    "scanId": "CRD-014782",
+    "patientName": "vhl",
+    "patientPassword": "107394",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3000%2Fscans%2FCRD-014782",
+    "timestamp": "2026-05-26T21:13:34.782Z"
+  },
+  {
+    "diagnosis": "Cone-Rod Dystrophy",
+    "confidence": 0.943,
+    "severity": "Moderate",
+    "stage": "المرحلة الثانية",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "severity": "Severe",
+        "percentage": 72
+      },
+      {
+        "name": "المستقبلات الضوئية",
+        "severity": "Moderate",
+        "percentage": 58
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "severity": "Mild",
+        "percentage": 34
+      },
+      {
+        "name": "النقرة المركزية",
+        "severity": "Severe",
+        "percentage": 81
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء مخطط كهربي للشبكية (ERG) للتأكيد",
+      "فحص جينومي لتحديد الطفرة الجينية المسببة",
+      "البدء بمكملات فيتامين A بجرعات علاجية محسوبة",
+      "متابعة دورية كل 6 أشهر لرصد التقدم"
+    ],
+    "processingTimeMs": 3311,
+    "modelVersion": "RetinaDR-v3.0",
+    "scanId": "CRD-785625",
+    "heatmapCoordinates": [
+      {
+        "x": 0.45,
+        "y": 0.48,
+        "intensity": 0.95,
+        "radius": 45
+      },
+      {
+        "x": 0.58,
+        "y": 0.52,
+        "intensity": 0.88,
+        "radius": 35
+      },
+      {
+        "x": 0.65,
+        "y": 0.38,
+        "intensity": 0.72,
+        "radius": 25
+      },
+      {
+        "x": 0.35,
+        "y": 0.62,
+        "intensity": 0.64,
+        "radius": 30
+      }
+    ],
+    "patientName": "ش7ش",
+    "patientPassword": "203290",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-785625",
+    "timestamp": "2026-05-29T21:06:25.626Z"
+  },
+  {
+    "diagnosis": "Cone-Rod Dystrophy",
+    "confidence": 0.943,
+    "severity": "Moderate",
+    "stage": "المرحلة الثانية",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "severity": "Severe",
+        "percentage": 72
+      },
+      {
+        "name": "المستقبلات الضوئية",
+        "severity": "Moderate",
+        "percentage": 58
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "severity": "Mild",
+        "percentage": 34
+      },
+      {
+        "name": "النقرة المركزية",
+        "severity": "Severe",
+        "percentage": 81
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء مخطط كهربي للشبكية (ERG) للتأكيد",
+      "فحص جينومي لتحديد الطفرة الجينية المسببة",
+      "البدء بمكملات فيتامين A بجرعات علاجية محسوبة",
+      "متابعة دورية كل 6 أشهر لرصد التقدم"
+    ],
+    "processingTimeMs": 3394,
+    "modelVersion": "RetinaDR-v3.0",
+    "scanId": "CRD-806971",
+    "heatmapCoordinates": [
+      {
+        "x": 0.45,
+        "y": 0.48,
+        "intensity": 0.95,
+        "radius": 45
+      },
+      {
+        "x": 0.58,
+        "y": 0.52,
+        "intensity": 0.88,
+        "radius": 35
+      },
+      {
+        "x": 0.65,
+        "y": 0.38,
+        "intensity": 0.72,
+        "radius": 25
+      },
+      {
+        "x": 0.35,
+        "y": 0.62,
+        "intensity": 0.64,
+        "radius": 30
+      }
+    ],
+    "patientName": "شعش",
+    "patientPassword": "158989",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-806971",
+    "timestamp": "2026-05-29T21:06:46.972Z"
+  },
+  {
+    "diagnosis": "Cone-Rod Dystrophy",
+    "confidence": 0.943,
+    "severity": "Moderate",
+    "stage": "المرحلة الثانية",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "severity": "Severe",
+        "percentage": 72
+      },
+      {
+        "name": "المستقبلات الضوئية",
+        "severity": "Moderate",
+        "percentage": 58
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "severity": "Mild",
+        "percentage": 34
+      },
+      {
+        "name": "النقرة المركزية",
+        "severity": "Severe",
+        "percentage": 81
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء مخطط كهربي للشبكية (ERG) للتأكيد",
+      "فحص جينومي لتحديد الطفرة الجينية المسببة",
+      "البدء بمكملات فيتامين A بجرعات علاجية محسوبة",
+      "متابعة دورية كل 6 أشهر لرصد التقدم"
+    ],
+    "processingTimeMs": 3331,
+    "modelVersion": "RetinaDR-v3.0",
+    "scanId": "CRD-839936",
+    "heatmapCoordinates": [
+      {
+        "x": 0.45,
+        "y": 0.48,
+        "intensity": 0.95,
+        "radius": 45
+      },
+      {
+        "x": 0.58,
+        "y": 0.52,
+        "intensity": 0.88,
+        "radius": 35
+      },
+      {
+        "x": 0.65,
+        "y": 0.38,
+        "intensity": 0.72,
+        "radius": 25
+      },
+      {
+        "x": 0.35,
+        "y": 0.62,
+        "intensity": 0.64,
+        "radius": 30
+      }
+    ],
+    "patientName": "خخخ",
+    "patientPassword": "233641",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-839936",
+    "timestamp": "2026-05-29T21:07:19.936Z"
+  },
+  {
+    "diagnosis": "Severe Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.7257,
+    "severity": "Severe",
+    "stage": "المرحلة الثالثة - اعتلال متقدم",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 72,
+        "severity": "Severe"
+      },
+      {
+        "name": "الأوعية الدموية",
+        "percentage": 68,
+        "severity": "Severe"
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "percentage": 55,
+        "severity": "Moderate"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 61,
+        "severity": "Severe"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء تصوير مقطعي للشبكية (OCT) عاجل",
+      "علاج بالليزر الشامل (PRP) ضروري",
+      "حقن مضادات VEGF داخل الجسم الزجاجي",
+      "متابعة شهرية مع طبيب الشبكية"
+    ],
+    "processingTimeMs": 153.2,
+    "modelVersion": "RetinaDR-v3.0",
+    "scanId": "CRD-003574",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.858,
+        "radius": 41,
+        "x": 0.462,
+        "y": 0.463
+      },
+      {
+        "intensity": 0.827,
+        "radius": 37,
+        "x": 0.564,
+        "y": 0.53
+      },
+      {
+        "intensity": 0.747,
+        "radius": 26,
+        "x": 0.373,
+        "y": 0.58
+      },
+      {
+        "intensity": 0.607,
+        "radius": 25,
+        "x": 0.636,
+        "y": 0.403
+      }
+    ],
+    "patientName": "خخخ",
+    "patientPassword": "134888",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-003574",
+    "timestamp": "2026-05-29T21:10:03.574Z"
+  },
+  {
+    "diagnosis": "Mild Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.5369,
+    "severity": "Mild",
+    "stage": "المرحلة الأولى - بداية الاعتلال",
+    "affectedZones": [
+      {
+        "name": "الأوعية الدموية الدقيقة",
+        "percentage": 15,
+        "severity": "Mild"
+      },
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 5,
+        "severity": "Normal"
+      },
+      {
+        "name": "الشبكية المحيطية",
+        "percentage": 12,
+        "severity": "Mild"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 3,
+        "severity": "Normal"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون خلال شهر لتقييم أولي",
+      "مراقبة مستويات السكر في الدم بانتظام",
+      "إجراء فحص قاع العين كل 6 أشهر",
+      "البدء بعلاج وقائي للسيطرة على تطور المرض",
+      "مراقبة ضغط الدم والكوليسترول"
+    ],
+    "processingTimeMs": 115.1,
+    "modelVersion": "RetinaDR-v3.0",
+    "scanId": "CRD-077714",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.335,
+        "radius": 18,
+        "x": 0.479,
+        "y": 0.495
+      },
+      {
+        "intensity": 0.243,
+        "radius": 14,
+        "x": 0.453,
+        "y": 0.459
+      }
+    ],
+    "patientName": "oo",
+    "patientPassword": "122671",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-077714",
+    "timestamp": "2026-05-29T21:11:17.714Z"
+  },
+  {
+    "diagnosis": "Severe Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.7253,
+    "severity": "Severe",
+    "stage": "المرحلة الثالثة - اعتلال متقدم",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 72,
+        "severity": "Severe"
+      },
+      {
+        "name": "الأوعية الدموية",
+        "percentage": 68,
+        "severity": "Severe"
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "percentage": 55,
+        "severity": "Moderate"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 61,
+        "severity": "Severe"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء تصوير مقطعي للشبكية (OCT) عاجل",
+      "علاج بالليزر الشامل (PRP) ضروري",
+      "حقن مضادات VEGF داخل الجسم الزجاجي",
+      "متابعة شهرية مع طبيب الشبكية"
+    ],
+    "processingTimeMs": 121.2,
+    "modelVersion": "RetinaDR-v3.0",
+    "scanId": "CRD-136058",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.87,
+        "radius": 43,
+        "x": 0.445,
+        "y": 0.49
+      },
+      {
+        "intensity": 0.749,
+        "radius": 34,
+        "x": 0.591,
+        "y": 0.549
+      },
+      {
+        "intensity": 0.703,
+        "radius": 31,
+        "x": 0.373,
+        "y": 0.58
+      },
+      {
+        "intensity": 0.646,
+        "radius": 27,
+        "x": 0.679,
+        "y": 0.371
+      }
+    ],
+    "patientName": "pppp",
+    "patientPassword": "475930",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-136058",
+    "timestamp": "2026-05-29T21:12:16.058Z"
+  },
+  {
+    "diagnosis": "Mild Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.3725,
+    "severity": "Mild",
+    "stage": "المرحلة الأولى - بداية الاعتلال",
+    "affectedZones": [
+      {
+        "name": "الأوعية الدموية الدقيقة",
+        "percentage": 15,
+        "severity": "Mild"
+      },
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 5,
+        "severity": "Normal"
+      },
+      {
+        "name": "الشبكية المحيطية",
+        "percentage": 12,
+        "severity": "Mild"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 3,
+        "severity": "Normal"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون خلال شهر لتقييم أولي",
+      "مراقبة مستويات السكر في الدم بانتظام",
+      "إجراء فحص قاع العين كل 6 أشهر",
+      "البدء بعلاج وقائي للسيطرة على تطور المرض",
+      "مراقبة ضغط الدم والكوليسترول"
+    ],
+    "processingTimeMs": 8360.1,
+    "modelVersion": "RetinaDR-v4.0",
+    "scanId": "CRD-888478",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.256,
+        "radius": 12,
+        "x": 0.503,
+        "y": 0.475
+      },
+      {
+        "intensity": 0.212,
+        "radius": 10,
+        "x": 0.428,
+        "y": 0.501
+      }
+    ],
+    "patientName": "خخححفف",
+    "patientPassword": "644499",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-888478",
+    "timestamp": "2026-05-30T16:34:48.478Z"
+  },
+  {
+    "diagnosis": "Mild Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.3725,
+    "severity": "Mild",
+    "stage": "المرحلة الأولى - بداية الاعتلال",
+    "affectedZones": [
+      {
+        "name": "الأوعية الدموية الدقيقة",
+        "percentage": 15,
+        "severity": "Mild"
+      },
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 5,
+        "severity": "Normal"
+      },
+      {
+        "name": "الشبكية المحيطية",
+        "percentage": 12,
+        "severity": "Mild"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 3,
+        "severity": "Normal"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون خلال شهر لتقييم أولي",
+      "مراقبة مستويات السكر في الدم بانتظام",
+      "إجراء فحص قاع العين كل 6 أشهر",
+      "البدء بعلاج وقائي للسيطرة على تطور المرض",
+      "مراقبة ضغط الدم والكوليسترول"
+    ],
+    "processingTimeMs": 1248.1,
+    "modelVersion": "RetinaDR-v4.0",
+    "scanId": "CRD-935732",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.311,
+        "radius": 15,
+        "x": 0.484,
+        "y": 0.485
+      },
+      {
+        "intensity": 0.262,
+        "radius": 15,
+        "x": 0.43,
+        "y": 0.505
+      }
+    ],
+    "patientName": "عععهههةةة",
+    "patientPassword": "817099",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-935732",
+    "timestamp": "2026-05-30T16:35:35.732Z"
+  },
+  {
+    "diagnosis": "Mild Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.3725,
+    "severity": "Mild",
+    "stage": "المرحلة الأولى - بداية الاعتلال",
+    "affectedZones": [
+      {
+        "name": "الأوعية الدموية الدقيقة",
+        "percentage": 15,
+        "severity": "Mild"
+      },
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 5,
+        "severity": "Normal"
+      },
+      {
+        "name": "الشبكية المحيطية",
+        "percentage": 12,
+        "severity": "Mild"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 3,
+        "severity": "Normal"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون خلال شهر لتقييم أولي",
+      "مراقبة مستويات السكر في الدم بانتظام",
+      "إجراء فحص قاع العين كل 6 أشهر",
+      "البدء بعلاج وقائي للسيطرة على تطور المرض",
+      "مراقبة ضغط الدم والكوليسترول"
+    ],
+    "processingTimeMs": 2304.9,
+    "modelVersion": "RetinaDR-v4.0",
+    "scanId": "CRD-994601",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.3,
+        "radius": 12,
+        "x": 0.484,
+        "y": 0.516
+      },
+      {
+        "intensity": 0.295,
+        "radius": 13,
+        "x": 0.46,
+        "y": 0.495
+      }
+    ],
+    "patientName": "فففففففففففففففففففففففف77",
+    "patientPassword": "712024",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-994601",
+    "timestamp": "2026-05-30T16:36:34.602Z"
+  },
+  {
+    "diagnosis": "Severe Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.6339,
+    "severity": "Severe",
+    "stage": "المرحلة الثالثة - اعتلال متقدم",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 72,
+        "severity": "Severe"
+      },
+      {
+        "name": "الأوعية الدموية",
+        "percentage": 68,
+        "severity": "Severe"
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "percentage": 55,
+        "severity": "Moderate"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 61,
+        "severity": "Severe"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء تصوير مقطعي للشبكية (OCT) عاجل",
+      "علاج بالليزر الشامل (PRP) ضروري",
+      "حقن مضادات VEGF داخل الجسم الزجاجي",
+      "متابعة شهرية مع طبيب الشبكية"
+    ],
+    "processingTimeMs": 1258.8,
+    "modelVersion": "RetinaDR-v4.0",
+    "scanId": "CRD-123277",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.89,
+        "radius": 41,
+        "x": 0.478,
+        "y": 0.475
+      },
+      {
+        "intensity": 0.758,
+        "radius": 36,
+        "x": 0.552,
+        "y": 0.515
+      },
+      {
+        "intensity": 0.731,
+        "radius": 29,
+        "x": 0.34,
+        "y": 0.621
+      },
+      {
+        "intensity": 0.678,
+        "radius": 27,
+        "x": 0.664,
+        "y": 0.407
+      }
+    ],
+    "patientName": "ppkk",
+    "patientPassword": "114777",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-123277",
+    "timestamp": "2026-05-30T16:55:23.277Z"
+  },
+  {
+    "diagnosis": "Severe Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.9088,
+    "severity": "Severe",
+    "stage": "المرحلة الثالثة - اعتلال متقدم",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 72,
+        "severity": "Severe"
+      },
+      {
+        "name": "الأوعية الدموية",
+        "percentage": 68,
+        "severity": "Severe"
+      },
+      {
+        "name": "الطبقة الحبيبية الخارجية",
+        "percentage": 55,
+        "severity": "Moderate"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 61,
+        "severity": "Severe"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص فورًا لتقييم شامل",
+      "إجراء تصوير مقطعي للشبكية (OCT) عاجل",
+      "علاج بالليزر الشامل (PRP) ضروري",
+      "حقن مضادات VEGF داخل الجسم الزجاجي",
+      "متابعة شهرية مع طبيب الشبكية"
+    ],
+    "processingTimeMs": 550.6,
+    "modelVersion": "RetinaDR-v4.0",
+    "scanId": "CRD-169266",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.86,
+        "radius": 43,
+        "x": 0.433,
+        "y": 0.453
+      },
+      {
+        "intensity": 0.78,
+        "radius": 33,
+        "x": 0.579,
+        "y": 0.515
+      },
+      {
+        "intensity": 0.675,
+        "radius": 29,
+        "x": 0.344,
+        "y": 0.629
+      },
+      {
+        "intensity": 0.661,
+        "radius": 27,
+        "x": 0.661,
+        "y": 0.403
+      }
+    ],
+    "patientName": "pppp;;;",
+    "patientPassword": "939233",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-169266",
+    "timestamp": "2026-05-30T16:56:09.266Z"
+  },
+  {
+    "diagnosis": "Moderate Non-Proliferative Diabetic Retinopathy",
+    "confidence": 0.5824,
+    "severity": "Moderate",
+    "stage": "المرحلة الثانية - اعتلال متوسط",
+    "affectedZones": [
+      {
+        "name": "المنطقة البقعية",
+        "percentage": 38,
+        "severity": "Moderate"
+      },
+      {
+        "name": "الأوعية الدموية",
+        "percentage": 45,
+        "severity": "Moderate"
+      },
+      {
+        "name": "الشبكية المحيطية",
+        "percentage": 28,
+        "severity": "Mild"
+      },
+      {
+        "name": "النقرة المركزية",
+        "percentage": 22,
+        "severity": "Mild"
+      }
+    ],
+    "recommendations": [
+      "مراجعة طبيب العيون المتخصص خلال أسبوعين",
+      "إجراء تصوير الأوعية الفلوريسيني (FFA) للتقييم",
+      "ضبط مستوى السكر التراكمي (HbA1c) أقل من 7%",
+      "البدء بعلاج الليزر الوقائي إن لزم الأمر",
+      "متابعة دورية كل 3 أشهر لرصد التطور"
+    ],
+    "processingTimeMs": 1179.2,
+    "modelVersion": "RetinaDR-v4.0",
+    "scanId": "CRD-203252",
+    "heatmapCoordinates": [
+      {
+        "intensity": 0.611,
+        "radius": 33,
+        "x": 0.481,
+        "y": 0.49
+      },
+      {
+        "intensity": 0.527,
+        "radius": 26,
+        "x": 0.568,
+        "y": 0.429
+      },
+      {
+        "intensity": 0.47,
+        "radius": 20,
+        "x": 0.376,
+        "y": 0.579
+      }
+    ],
+    "patientName": "ooomm",
+    "patientPassword": "521933",
+    "qrCodeUrl": "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http%3A%2F%2Flocalhost%3A3002%2Fscans%2FCRD-203252",
+    "timestamp": "2026-05-30T16:56:43.252Z"
+  }
+]

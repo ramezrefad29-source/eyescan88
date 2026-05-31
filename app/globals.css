@@ -1,0 +1,518 @@
+@import "tailwindcss";
+
+/* =============================================
+   DESIGN TOKENS — RetinaScan AI  v3
+   ============================================= */
+:root {
+  /* Core Palette */
+  --bg-void:    #020817;
+  --bg-deep:    #030d1a;
+  --bg-surface: #0a1628;
+  --bg-elevated:#0f1f35;
+
+  --cyan:       #00d4ff;
+  --cyan-dim:   rgba(0,212,255,0.12);
+  --cyan-glow:  rgba(0,212,255,0.35);
+  --violet:     #7c3aed;
+  --violet-dim: rgba(124,58,237,0.12);
+  --violet-glow:rgba(124,58,237,0.35);
+  --indigo:     #3730a3;
+  --teal:       #00f5d4;
+
+  --success:    #00c9a7;
+  --warning:    #ffd60a;
+  --danger:     #ff4757;
+  --orange:     #ff8c42;
+
+  --text-primary:  #f1f5f9;
+  --text-secondary:#94a3b8;
+  --text-muted:    #475569;
+
+  /* Glass */
+  --glass-bg:          rgba(255,255,255,0.025);
+  --glass-bg-hover:    rgba(255,255,255,0.05);
+  --glass-border:      rgba(255,255,255,0.07);
+  --glass-border-hover:rgba(0,212,255,0.28);
+
+  /* Shadows */
+  --shadow-cyan:  0 0 40px rgba(0,212,255,0.12);
+  --shadow-violet:0 0 40px rgba(124,58,237,0.12);
+  --shadow-card:  0 8px 40px rgba(0,0,0,0.5);
+
+  /* Typography */
+  --font-display:var(--font-space),"Space Grotesk",system-ui,sans-serif;
+  --font-body:   var(--font-inter),"Inter",system-ui,sans-serif;
+
+  /* Spacing */
+  --section-gap: 7rem;
+  --card-radius: 20px;
+  --nav-h:       72px;
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background-color:var(--bg-void);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+/* =============================================
+   GRADIENT MESH BACKGROUND
+   ============================================= */
+.gradient-mesh {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 15%, rgba(0,212,255,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(124,58,237,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 55% 45%, rgba(55,48,163,0.04) 0%, transparent 70%),
+    var(--bg-void);
+  animation:meshPulse 14s ease-in-out infinite alternate;
+}
+
+@keyframes meshPulse {
+  0% {
+    background:
+      radial-gradient(ellipse 70% 55% at 15% 15%, rgba(0,212,255,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 85% 85%, rgba(124,58,237,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 55% at 55% 45%, rgba(55,48,163,0.04) 0%, transparent 70%),
+      var(--bg-void);
+  }
+  100% {
+    background:
+      radial-gradient(ellipse 70% 55% at 25% 25%, rgba(0,212,255,0.10) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 75% 75%, rgba(124,58,237,0.13) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 55% at 50% 50%, rgba(55,48,163,0.07) 0%, transparent 70%),
+      var(--bg-void);
+  }
+}
+
+/* =============================================
+   NEURAL GRID LINES
+   ============================================= */
+.neural-grid {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 85% 85% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* =============================================
+   GLASS CARD SYSTEM
+   ============================================= */
+.glass {
+  background:var(--glass-bg);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--glass-border);
+  transition:background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass:hover {
+  background:var(--glass-bg-hover);
+  border-color:var(--glass-border-hover);
+  box-shadow:var(--shadow-cyan);
+}
+
+.glass-strong {
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(32px);
+  -webkit-backdrop-filter:blur(32px);
+  border:1px solid rgba(0,212,255,0.12);
+  box-shadow:var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* =============================================
+   TYPOGRAPHY UTILITIES
+   ============================================= */
+.font-display { font-family:var(--font-display); }
+.font-body    { font-family:var(--font-body); }
+
+.text-gradient-cyan {
+  background:linear-gradient(135deg, var(--cyan) 0%, #00f5d4 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.text-gradient-violet {
+  background:linear-gradient(135deg, var(--violet) 0%, var(--cyan) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.text-gradient-warm {
+  background:linear-gradient(135deg, #ff8c42 0%, #ffd60a 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* =============================================
+   GLOW EFFECTS
+   ============================================= */
+.glow-cyan   { box-shadow:0 0 20px var(--cyan-glow), 0 0 60px rgba(0,212,255,0.12); }
+.glow-violet { box-shadow:0 0 20px var(--violet-glow), 0 0 60px rgba(124,58,237,0.12); }
+.text-glow-cyan { text-shadow:0 0 20px var(--cyan-glow); }
+
+/* =============================================
+   SCAN LINE ANIMATION
+   ============================================= */
+@keyframes scanLine {
+  0%   { top:0%;  opacity:1; }
+  90%  { opacity:1; }
+  100% { top:100%; opacity:0; }
+}
+.scan-line {
+  position:absolute; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+  box-shadow:0 0 20px var(--cyan), 0 0 60px rgba(0,212,255,0.5);
+  animation:scanLine 2s linear infinite;
+  z-index:10;
+}
+
+/* =============================================
+   KEYFRAMES
+   ============================================= */
+@keyframes pulseGlow {
+  0%,100% { opacity:0.5; transform:scale(1); }
+  50%     { opacity:1;   transform:scale(1.05); }
+}
+@keyframes float {
+  0%,100% { transform:translateY(0px); }
+  50%     { transform:translateY(-12px); }
+}
+@keyframes rotateRing {
+  from { transform:rotate(0deg); }
+  to   { transform:rotate(360deg); }
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position:-200% center; }
+  100% { background-position:200% center; }
+}
+@keyframes gradientShift {
+  0%   { background-position:0% 50%; }
+  50%  { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50%     { opacity:0.3; }
+}
+
+.animate-float         { animation:float 4.5s ease-in-out infinite; }
+.animate-pulse-glow    { animation:pulseGlow 2.5s ease-in-out infinite; }
+.animate-rotate-ring   { animation:rotateRing 9s linear infinite; }
+.animate-fade-in-up    { animation:fadeInUp 0.7s ease-out forwards; }
+.animate-blink         { animation:blink 1.4s ease-in-out infinite; }
+
+/* Shimmer skeleton */
+.shimmer {
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,0.025) 25%,
+    rgba(0,212,255,0.07) 50%,
+    rgba(255,255,255,0.025) 75%
+  );
+  background-size:200% 100%;
+  animation:shimmer 2.2s infinite;
+}
+
+/* =============================================
+   PROGRESS RING
+   ============================================= */
+.progress-ring-circle {
+  transition:stroke-dashoffset 0.55s ease;
+  transform:rotate(-90deg);
+  transform-origin:50% 50%;
+}
+
+/* =============================================
+   CUSTOM SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar       { width:5px; }
+::-webkit-scrollbar-track { background:var(--bg-deep); }
+::-webkit-scrollbar-thumb { background:rgba(0,212,255,0.25); border-radius:4px; }
+::-webkit-scrollbar-thumb:hover { background:var(--cyan); }
+
+/* =============================================
+   UPLOAD DROPZONE
+   ============================================= */
+.dropzone-idle {
+  border:2px dashed rgba(0,212,255,0.2);
+  transition:all 0.3s ease;
+}
+.dropzone-hover {
+  border:2px dashed var(--cyan);
+  box-shadow:0 0 40px var(--cyan-glow), inset 0 0 40px rgba(0,212,255,0.04);
+}
+
+/* =============================================
+   BUTTON SYSTEM
+   ============================================= */
+.btn-primary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:linear-gradient(135deg, var(--cyan) 0%, #0099bb 100%);
+  color:var(--bg-void);
+  font-weight:700;
+  font-family:var(--font-display);
+  font-size:0.9rem;
+  letter-spacing:0.01em;
+  padding:13px 28px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  position:relative;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.btn-primary::before {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.22), transparent);
+  opacity:0;
+  transition:opacity 0.25s ease;
+}
+.btn-primary:hover {
+  transform:translateY(-2px);
+  box-shadow:0 10px 36px rgba(0,212,255,0.45);
+}
+.btn-primary:hover::before { opacity:1; }
+.btn-primary:active { transform:translateY(0); }
+
+.btn-ghost {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:transparent;
+  border:1px solid var(--glass-border);
+  color:var(--text-secondary);
+  font-size:0.875rem;
+  padding:11px 22px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:all 0.25s ease;
+  font-family:var(--font-body);
+  white-space:nowrap;
+}
+.btn-ghost:hover {
+  border-color:var(--cyan);
+  color:var(--cyan);
+  background:var(--cyan-dim);
+}
+
+/* =============================================
+   SEVERITY BADGES
+   ============================================= */
+.badge {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:5px 14px;
+  border-radius:24px;
+  font-size:0.72rem;
+  font-weight:700;
+  font-family:var(--font-display);
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+}
+
+/* =============================================
+   NAV LINK
+   ============================================= */
+.nav-link {
+  color:var(--text-secondary);
+  font-size:0.875rem;
+  padding:6px 14px;
+  border-radius:8px;
+  transition:all 0.2s ease;
+  text-decoration:none;
+}
+.nav-link:hover {
+  color:var(--text-primary);
+  background:var(--glass-bg-hover);
+}
+.nav-link.active {
+  color:var(--cyan);
+}
+
+/* =============================================
+   SECTION DIVIDER
+   ============================================= */
+.section-divider {
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--glass-border) 30%, rgba(0,212,255,0.12) 50%, var(--glass-border) 70%, transparent);
+  margin:0;
+}
+
+/* =============================================
+   STAT COUNTER
+   ============================================= */
+.stat-value {
+  font-family:var(--font-display);
+  font-size:2.5rem;
+  font-weight:800;
+  line-height:1;
+  background:linear-gradient(135deg, var(--cyan) 0%, #00f5d4 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* =============================================
+   CARD HOVER LIFT
+   ============================================= */
+.card-lift {
+  transition:transform 0.28s ease, box-shadow 0.28s ease;
+}
+.card-lift:hover {
+  transform:translateY(-6px);
+  box-shadow:0 20px 48px rgba(0,0,0,0.4), var(--shadow-cyan);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width:768px) {
+  :root { --section-gap:4rem; }
+  .neural-grid { background-size:40px 40px; }
+  .stat-value  { font-size:2rem; }
+}
+
+@media (max-width:480px) {
+  .btn-primary { padding:12px 20px; font-size:0.85rem; }
+  .btn-ghost   { padding:10px 18px; }
+}
+
+/* =============================================
+   PRINT MEDICAL REPORT STYLING (Premium A4)
+   ============================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.6cm;
+  }
+
+  body, html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  /* Hide navigation, buttons, background visual effects, and secure keypad/access cards */
+  .gradient-mesh,
+  .neural-grid,
+  nav,
+  footer,
+  button,
+  .btn-primary,
+  .btn-ghost,
+  #download-report-btn,
+  #new-scan-btn,
+  a,
+  form,
+  .fixed,
+  .absolute:has(button),
+  .glass-strong:has(h3:contains("Patient Access")),
+  div:has(h3:contains("Patient Access")),
+  div:has(span:contains("Passcode")),
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Reset container widths for page flow */
+  main, 
+  .max-w-4xl, 
+  .max-w-7xl,
+  .mx-auto,
+  .grid,
+  .flex-col {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    float: none !important;
+  }
+
+  /* Glass card prints as premium clean clinical white cards */
+  .glass,
+  .glass-strong {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    margin-bottom: 20px !important;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure canvas visuals display clearly */
+  canvas {
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    border: 1px solid #94a3b8 !important;
+    display: block !important;
+  }
+
+  /* Text alignments and weights */
+  h1, h2, h3, h4, h5, span, p, div, li {
+    color: #000000 !important;
+    text-shadow: none !important;
+    text-align: right !important;
+  }
+
+  .font-display {
+    font-family: system-ui, sans-serif !important;
+  }
+
+  .text-slate-500, 
+  .text-slate-400,
+  .text-slate-300 {
+    color: #475569 !important;
+  }
+
+  /* Clinical progress bars */
+  .h-1.5, .h-2 {
+    height: 6px !important;
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+  }
+
+  /* Badges */
+  .badge {
+    background: #f8fafc !important;
+    border: 1.5px solid #64748b !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    padding: 2px 8px !important;
+  }
+
+  /* Avoid splitting critical segments */
+  .page-break-avoid {
+    page-break-inside: avoid;
+  }
+}

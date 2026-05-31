@@ -1,0 +1,80 @@
+{
+  "affected_zones": [
+    {
+      "name": "المنطقة البقعية",
+      "percentage": 89,
+      "severity": "Critical"
+    },
+    {
+      "name": "الأوعية الدموية الجديدة",
+      "percentage": 92,
+      "severity": "Critical"
+    },
+    {
+      "name": "الجسم الزجاجي",
+      "percentage": 78,
+      "severity": "Severe"
+    },
+    {
+      "name": "النقرة المركزية",
+      "percentage": 85,
+      "severity": "Critical"
+    }
+  ],
+  "all_probabilities": {
+    "Mild DR": 0.0,
+    "Moderate DR": 0.0,
+    "Normal": 0.0,
+    "Proliferative DR": 1.0,
+    "Severe DR": 0.0
+  },
+  "class_id": 4,
+  "class_name": "Proliferative DR",
+  "confidence": 1.0,
+  "diagnosis": "Proliferative Diabetic Retinopathy",
+  "diagnosis_ar": "اعتلال الشبكية السكري التكاثري (Proliferative DR)",
+  "heatmap_coordinates": [
+    {
+      "intensity": 0.924,
+      "radius": 43,
+      "x": 0.423,
+      "y": 0.507
+    },
+    {
+      "intensity": 0.926,
+      "radius": 43,
+      "x": 0.582,
+      "y": 0.521
+    },
+    {
+      "intensity": 0.847,
+      "radius": 37,
+      "x": 0.37,
+      "y": 0.64
+    },
+    {
+      "intensity": 0.829,
+      "radius": 29,
+      "x": 0.655,
+      "y": 0.397
+    },
+    {
+      "intensity": 0.769,
+      "radius": 28,
+      "x": 0.526,
+      "y": 0.318
+    }
+  ],
+  "model_version": "RetinaDR-v4.0",
+  "processing_time_ms": 68.0,
+  "recommendations": [
+    "حالة طوارئ طبية - مراجعة فورية لأخصائي شبكية",
+    "علاج فوري بحقن مضادات VEGF (Anti-VEGF)",
+    "جراحة استئصال الجسم الزجاجي (Vitrectomy) محتملة",
+    "علاج ليزر شامل عاجل (Panretinal Photocoagulation)",
+    "مراقبة يومية للرؤية والإبلاغ عن أي تغيير فوري",
+    "ضبط السكر وضغط الدم بشكل صارم"
+  ],
+  "severity": "Critical",
+  "stage": "المرحلة الرابعة - اعتلال تكاثري حرج"
+}

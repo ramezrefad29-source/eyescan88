@@ -1,0 +1,32 @@
+Training Version: v2 (High-Accuracy Edition)
+Test Accuracy (TTA): 0.5900
+Test Accuracy (Standard): 0.5850
+Test Accuracy (TTA): 0.5900
+Best Val Score: 0.6432
+Best Epoch: 8
+Temperature: 0.90
+Training Time: 6950.7s
+Focal Gamma: 2.0
+Label Smoothing: 0.08
+Mixup Alpha: 0.2
+
+Classification Report:
+                  precision    recall  f1-score   support
+
+          Normal     0.8611    0.7126    0.7799       174
+         Mild DR     0.3048    0.6957    0.4238        46
+     Moderate DR     0.4898    0.2609    0.3404        92
+       Severe DR     0.5854    0.7059    0.6400        68
+Proliferative DR     0.4000    0.4000    0.4000        20
+
+        accuracy                         0.5900       400
+       macro avg     0.5282    0.5550    0.5168       400
+    weighted avg     0.6418    0.5900    0.5951       400
+
+
+Confusion Matrix:
+[[124  37   8   3   2]
+ [ 10  32   3   1   0]
+ [  8  31  24  21   8]
+ [  1   4  13  48   2]
+ [  1   1   1   9   8]]
