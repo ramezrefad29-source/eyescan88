@@ -1,0 +1,8 @@
+--find-links https://download.pytorch.org/whl/cpu
+torch==2.2.0+cpu
+torchvision==0.17.0+cpu
+Flask==3.0.2
+Flask-Cors==4.0.0
+Pillow==10.2.0
+numpy==1.26.4
+gunicorn==21.2.0
