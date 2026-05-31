@@ -111,18 +111,32 @@ export default function Eye3D({
 
         // 2. Part Highlighting
         let isTarget = false;
+        const isOptimizedModel = matName.includes("aistandard") || matName.includes("eyes") || nodeName.includes("eye_1_r") || nodeName.includes("eye_2_r");
+
         if (highlightPart === "all") {
           isTarget = true;
-        } else if (highlightPart === "sclera" && (matName.includes("sclera") || nodeName.includes("sclera"))) {
-          isTarget = true;
-        } else if (highlightPart === "iris" && (matName.includes("iris") || nodeName.includes("iris"))) {
-          isTarget = true;
-        } else if (highlightPart === "body" && (matName.includes("pupil") || matName.includes("body") || nodeName.includes("pupil") || nodeName.includes("body"))) {
-          isTarget = true;
-        } else if (highlightPart === "cornea" && (matName.includes("cornea") || matName.includes("lens") || matName.includes("glass") || nodeName.includes("cornea") || nodeName.includes("lens") || nodeName.includes("glass"))) {
-          isTarget = true;
-        } else if (highlightPart === "retina" && (matName.includes("retina") || matName.includes("nerve") || matName.includes("optic") || nodeName.includes("retina") || nodeName.includes("nerve") || nodeName.includes("optic") || matName.includes("material") || nodeName.includes("eye"))) {
-          isTarget = true;
+        } else if (isOptimizedModel) {
+          // Optimized model support: outer shell vs inner eyeball
+          const isOuterShell = matName.includes("aistandard") || nodeName.includes("eye_1_r");
+          const isInnerBall = matName.includes("eyes") || nodeName.includes("eye_2_r");
+          if (highlightPart === "sclera" || highlightPart === "cornea") {
+            isTarget = isOuterShell;
+          } else if (highlightPart === "iris" || highlightPart === "body" || highlightPart === "retina") {
+            isTarget = isInnerBall;
+          }
+        } else {
+          // Original model support
+          if (highlightPart === "sclera" && (matName.includes("sclera") || nodeName.includes("sclera"))) {
+            isTarget = true;
+          } else if (highlightPart === "iris" && (matName.includes("iris") || nodeName.includes("iris"))) {
+            isTarget = true;
+          } else if (highlightPart === "body" && (matName.includes("pupil") || matName.includes("body") || nodeName.includes("pupil") || nodeName.includes("body"))) {
+            isTarget = true;
+          } else if (highlightPart === "cornea" && (matName.includes("cornea") || matName.includes("lens") || matName.includes("glass") || nodeName.includes("cornea") || nodeName.includes("lens") || nodeName.includes("glass"))) {
+            isTarget = true;
+          } else if (highlightPart === "retina" && (matName.includes("retina") || matName.includes("nerve") || matName.includes("optic") || nodeName.includes("retina") || nodeName.includes("nerve") || nodeName.includes("optic") || matName.includes("material") || nodeName.includes("eye"))) {
+            isTarget = true;
+          }
         }
 
         // Transparency overrides for parts that are not focused
@@ -132,7 +146,8 @@ export default function Eye3D({
           mat.depthWrite = false;
         } else {
           // Restore opacity rules
-          if (matName.includes("sclera") || nodeName.includes("sclera")) {
+          const isScleraOrOuter = matName.includes("sclera") || nodeName.includes("sclera") || matName.includes("aistandard") || nodeName.includes("eye_1_r");
+          if (isScleraOrOuter) {
             mat.transparent = true;
             // Base opacity decreases as stage increases to reveal interior
             const baseOpacity = [0.35, 0.25, 0.18, 0.10, 0.05][currentStage];
@@ -150,9 +165,12 @@ export default function Eye3D({
           if (!mat._originalColor) {
             mat._originalColor = mat.color.clone();
           }
-          if (matName.includes("sclera") || nodeName.includes("sclera")) {
+          const isScleraOrOuter = matName.includes("sclera") || nodeName.includes("sclera") || matName.includes("aistandard") || nodeName.includes("eye_1_r");
+          const isIris = matName.includes("iris") || nodeName.includes("iris") || (matName.includes("eyes") && !isScleraOrOuter);
+
+          if (isScleraOrOuter) {
             mat.color.setHex(0x0055ff); // Cyan outer
-          } else if (matName.includes("iris") || nodeName.includes("iris")) {
+          } else if (isIris) {
             mat.color.setHex(0xff1100); // Red high risk central
           } else {
             mat.color.setHex(0xffaa00); // Yellow-orange body
@@ -243,9 +261,10 @@ export default function Eye3D({
         antialias: true,
         alpha: true,
         powerPreference: "high-performance",
+        precision: "mediump"
       });
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.2;
 
@@ -422,7 +441,10 @@ export default function Eye3D({
 
         // Align the virtual guides relative to the loaded iris mesh
         let irisX = 0, irisY = 0, irisZ = 1.35;
-        const irisMesh = eyeModel.getObjectByName("iris_Iris_0") || eyeModel.getObjectByName("iris");
+        const irisMesh = eyeModel.getObjectByName("iris_Iris_0") || 
+                         eyeModel.getObjectByName("iris") || 
+                         eyeModel.getObjectByName("Eye_2_R_Eyes_0") || 
+                         eyeModel.getObjectByName("Eye_2_R");
         if (irisMesh) {
           const irisBox = new THREE.Box3().setFromObject(irisMesh);
           const irisCenter = new THREE.Vector3();
@@ -456,11 +478,14 @@ export default function Eye3D({
               const matName = (mat.name || "").toLowerCase();
               const nodeName = (node.name || "").toLowerCase();
 
-              // Sclera (outer shell with transmission) -> make it a subtle transparent shell
-              if (
-                matName.includes("sclera") ||
-                nodeName.includes("sclera")
-              ) {
+              // Sclera / Outer Cornea (outer shell with transmission) -> make it a subtle transparent shell
+              const isScleraOrOuter = 
+                matName.includes("sclera") || 
+                nodeName.includes("sclera") ||
+                matName.includes("aistandard") ||
+                nodeName.includes("eye_1_r");
+
+              if (isScleraOrOuter) {
                 mat.transparent = true;
                 mat.opacity = 0.3;
                 mat.depthWrite = false;
@@ -488,14 +513,13 @@ export default function Eye3D({
         setError(null);
       };
 
-      const originUrl = typeof window !== "undefined" ? window.location.origin : "";
-      const modelPath = `${originUrl}/my_model_of_eye.glb`;
-      const fallbackPath = `${originUrl}/realistic_human_eye.glb`;
+      const modelPath = "/my_model_of_eye.glb";
+      const fallbackPath = "/realistic_human_eye.glb";
 
       loader.load(
         modelPath,
         (gltf) => {
-          console.log("[Eye3D] Model loaded successfully!", gltf);
+          console.log("[Eye3D] Primary model loaded successfully!", gltf);
           processLoadedModel(gltf.scene);
         },
         (progress) => {
@@ -504,7 +528,7 @@ export default function Eye3D({
           }
         },
         (err) => {
-          console.warn("[Eye3D] First model load failed, trying fallback...", err);
+          console.warn("[Eye3D] Primary model load failed, trying fallback...", err);
           loader.load(
             fallbackPath,
             (gltfFallback) => {
@@ -621,11 +645,20 @@ export default function Eye3D({
                   } else {
                     // Stage 0 (Healthy) - restore normal sci-fi hud highlighted colors or low ambient glow
                     if (activeHighlightPart !== "all") {
-                      if (activeHighlightPart === "retina" && (matName.includes("retina") || nodeName.includes("retina") || matName.includes("material") || nodeName.includes("eye"))) {
+                      const isScleraOrOuter = matName.includes("sclera") || nodeName.includes("sclera") || matName.includes("aistandard") || nodeName.includes("eye_1_r");
+                      const isInnerBall = matName.includes("eyes") || nodeName.includes("eye_2_r") || matName.includes("iris") || nodeName.includes("iris") || matName.includes("material");
+
+                      if (activeHighlightPart === "retina" && (isInnerBall || matName.includes("retina") || nodeName.includes("retina"))) {
                         mat.emissive.setHex(0x00c9a7);
                         mat.emissiveIntensity = 0.5;
-                      } else if (activeHighlightPart === "iris" && (matName.includes("iris") || nodeName.includes("iris"))) {
+                      } else if (activeHighlightPart === "iris" && (isInnerBall || matName.includes("iris") || nodeName.includes("iris"))) {
                         mat.emissive.setHex(0x7c3aed);
+                        mat.emissiveIntensity = 0.5;
+                      } else if (activeHighlightPart === "cornea" && isScleraOrOuter) {
+                        mat.emissive.setHex(0x00d4ff);
+                        mat.emissiveIntensity = 0.5;
+                      } else if (activeHighlightPart === "sclera" && isScleraOrOuter) {
+                        mat.emissive.setHex(0x00f5d4);
                         mat.emissiveIntensity = 0.5;
                       } else {
                         mat.emissive.setHex(0x001122);

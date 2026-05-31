@@ -10,35 +10,14 @@ export async function GET(
   const scan = getScan(id);
   if (!scan) return NextResponse.json({ success: false, error: "Scan not found" }, { status: 404 });
 
-  const { searchParams } = new URL(req.url);
-  const password = searchParams.get("password");
-
-  if (!password) {
-    // Return restricted non-sensitive info when locked
-    return NextResponse.json({
-      success: true,
-      scan: {
-        scanId: scan.scanId,
-        timestamp: scan.timestamp,
-        isLocked: true,
-      },
-    });
-  }
-
-  if (password === scan.patientPassword) {
-    return NextResponse.json({
-      success: true,
-      scan: {
-        ...scan,
-        isLocked: false,
-      },
-    });
-  }
-
-  return NextResponse.json(
-    { success: false, error: "رمز فك التشفير خاطئ" },
-    { status: 401 }
-  );
+  // Return the scan directly without requiring any password (password bypass)
+  return NextResponse.json({
+    success: true,
+    scan: {
+      ...scan,
+      isLocked: false,
+    },
+  });
 }
 
 // PATCH /api/scans/[id]  — update doctor notes

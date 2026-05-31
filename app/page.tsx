@@ -184,14 +184,51 @@ function RetinaOrb() {
         }}
       />
 
-      {/* Main eye 3D Model */}
+      {/* Main eye 2D Digital Scan Hologram (High-Performance SVG) */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div style={{ width: "240px", height: "240px" }}>
-          <Eye3D />
+        <div className="relative w-[210px] h-[210px] rounded-full flex items-center justify-center" style={{
+          background: "radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, rgba(3, 13, 26, 0.4) 70%)",
+          boxShadow: "0 0 30px rgba(0, 212, 255, 0.15), inset 0 0 30px rgba(0, 212, 255, 0.05)",
+          border: "1px solid rgba(0, 212, 255, 0.25)"
+        }}>
+          {/* Cybernetic Eye SVG Artwork */}
+          <svg width="140" height="140" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[70%] h-[70%] drop-shadow-[0_0_12px_rgba(0,212,255,0.6)]">
+            <defs>
+              <linearGradient id="cyberIris" x1="0" y1="0" x2="100" y2="100">
+                <stop offset="0%" stopColor="#00D4FF" />
+                <stop offset="50%" stopColor="#00C9A7" />
+                <stop offset="100%" stopColor="#7C3AED" />
+              </linearGradient>
+              <radialGradient id="cyberPupil" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#020817" />
+                <stop offset="70%" stopColor="#020817" />
+                <stop offset="100%" stopColor="#00D4FF" />
+              </radialGradient>
+            </defs>
+            {/* Outer Eye Contour (Sclera Ring) */}
+            <path d="M10 50C25 25 75 25 90 50C75 75 25 75 10 50Z" stroke="url(#cyberIris)" strokeWidth="1.5" strokeLinecap="round" opacity="0.85" />
+            <path d="M18 50C30 32 70 32 82 50C70 68 30 68 18 50Z" stroke="rgba(0, 212, 255, 0.3)" strokeWidth="1" strokeDasharray="3 3" />
+            
+            {/* Iris Glowing Circle */}
+            <circle cx="50" cy="50" r="22" stroke="url(#cyberIris)" strokeWidth="2.5" strokeDasharray="4 2" className="animate-spin" style={{ animationDuration: "25s", transformOrigin: "50px 50px" }} />
+            <circle cx="50" cy="50" r="18" fill="rgba(0, 212, 255, 0.12)" stroke="rgba(0, 212, 255, 0.4)" strokeWidth="0.75" />
+            
+            {/* Pupil Center */}
+            <circle cx="50" cy="50" r="9" fill="url(#cyberPupil)" stroke="#00D4FF" strokeWidth="1.5" />
+            <circle cx="50" cy="50" r="3" fill="#FFFFFF" opacity="0.9" />
+
+            {/* Futuristic Tech Crosshairs */}
+            <line x1="50" y1="12" x2="50" y2="20" stroke="#00D4FF" strokeWidth="1" opacity="0.7" />
+            <line x1="50" y1="80" x2="50" y2="88" stroke="#00D4FF" strokeWidth="1" opacity="0.7" />
+            <line x1="12" y1="50" x2="20" y2="50" stroke="#00D4FF" strokeWidth="1" opacity="0.7" />
+            <line x1="80" y1="50" x2="88" y2="50" stroke="#00D4FF" strokeWidth="1" opacity="0.7" />
+          </svg>
+          {/* Cyber scan lines overlay */}
+          <div className="absolute inset-0 rounded-full border border-dashed border-cyan-500/10 animate-spin" style={{ animationDuration: "50s" }} />
         </div>
       </motion.div>
 

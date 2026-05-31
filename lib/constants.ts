@@ -131,8 +131,14 @@ export const ANATOMY_DESCRIPTIONS = {
     titleEn: "Retina",
     description: "الشبكية هي الغشاء العصبي الداخلي الحساس للضوء. تحتوي على ملايين المستقبلات الضوئية (المخاريط للرؤية الملونة والحدة، والعصي للإضاءة الخافتة) وتصاب باعتلال الخلايا المخروطية (CRD).",
     metric: "مستوى اعتلال المستقبلات: حرج"
+  },
+  body: {
+    title: "بؤبؤ العين (Pupil)",
+    titleEn: "Pupil / Aperture",
+    description: "البؤبؤ هو الفتحة المركزية السوداء التي تسمح للضوء بالمرور مباشرة إلى الداخل. يظهر باللون الأسود لأن الضوء الداخل يمتص بالكامل بواسطة أنسجة العين الداخلية.",
+    metric: "قطر الفتحة: 3.5 mm (تفاعلي)"
   }
-};
+} as Record<string, { title: string; titleEn: string; description: string; metric: string }>;
 
 export function getQrCodeUrl(scanId: string, password?: string): string {
   const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
