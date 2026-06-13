@@ -14,6 +14,25 @@ interface Eye3DProps {
   interactive?: boolean;
 }
 
+// Global module-level variables to cache the loaded GLTF Group scenes.
+// Reusing these scenes across page navigation avoids downloading and parsing the model repeatedly.
+let cachedModelScene: THREE.Group | null = null;
+let cachedFallbackModelScene: THREE.Group | null = null;
+
+function deepCloneModel(source: THREE.Group): THREE.Group {
+  const clone = source.clone();
+  clone.traverse((node) => {
+    if (node instanceof THREE.Mesh) {
+      if (Array.isArray(node.material)) {
+        node.material = node.material.map((mat) => mat.clone());
+      } else if (node.material) {
+        node.material = node.material.clone();
+      }
+    }
+  });
+  return clone;
+}
+
 export default function Eye3D({
   stage = 0,
   severity,
@@ -396,6 +415,15 @@ export default function Eye3D({
       container.addEventListener("pointerup", handlePointerUp);
       container.addEventListener("pointercancel", handlePointerUp);
 
+      // Intersection observer to pause rendering when component is off-screen
+      let isComponentVisible = true;
+      const visibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isComponentVisible = entry.isIntersecting;
+        });
+      }, { threshold: 0.05 });
+      visibilityObserver.observe(container);
+
       // Loader
       const loader = new GLTFLoader();
 
@@ -516,38 +544,50 @@ export default function Eye3D({
       const modelPath = "/my_model_of_eye.glb";
       const fallbackPath = "/realistic_human_eye.glb";
 
-      loader.load(
-        modelPath,
-        (gltf) => {
-          console.log("[Eye3D] Primary model loaded successfully!", gltf);
-          processLoadedModel(gltf.scene);
-        },
-        (progress) => {
-          if (progress.total > 0) {
-            console.log("[Eye3D] Loading progress:", Math.round((progress.loaded / progress.total) * 100) + "%");
-          }
-        },
-        (err) => {
-          console.warn("[Eye3D] Primary model load failed, trying fallback...", err);
-          loader.load(
-            fallbackPath,
-            (gltfFallback) => {
-              console.log("[Eye3D] Fallback model loaded successfully!", gltfFallback);
-              processLoadedModel(gltfFallback.scene);
-            },
-            (progress) => {
-              if (progress.total > 0) {
-                console.log("[Eye3D] Fallback loading progress:", Math.round((progress.loaded / progress.total) * 100) + "%");
-              }
-            },
-            (fallbackErr) => {
-              console.error("[Eye3D] Both models failed to load:", fallbackErr);
-              setError("فشل تحميل النموذج ثلاثي الأبعاد");
-              setLoading(false);
+      if (cachedModelScene) {
+        console.log("[Eye3D] Instantiating primary model from global cache");
+        processLoadedModel(deepCloneModel(cachedModelScene));
+      } else {
+        loader.load(
+          modelPath,
+          (gltf) => {
+            console.log("[Eye3D] Primary model loaded successfully!", gltf);
+            cachedModelScene = gltf.scene;
+            processLoadedModel(deepCloneModel(gltf.scene));
+          },
+          (progress) => {
+            if (progress.total > 0) {
+              console.log("[Eye3D] Loading progress:", Math.round((progress.loaded / progress.total) * 100) + "%");
             }
-          );
-        }
-      );
+          },
+          (err) => {
+            console.warn("[Eye3D] Primary model load failed, trying fallback...", err);
+            if (cachedFallbackModelScene) {
+              console.log("[Eye3D] Instantiating fallback model from global cache");
+              processLoadedModel(deepCloneModel(cachedFallbackModelScene));
+            } else {
+              loader.load(
+                fallbackPath,
+                (gltfFallback) => {
+                  console.log("[Eye3D] Fallback model loaded successfully!", gltfFallback);
+                  cachedFallbackModelScene = gltfFallback.scene;
+                  processLoadedModel(deepCloneModel(gltfFallback.scene));
+                },
+                (progress) => {
+                  if (progress.total > 0) {
+                    console.log("[Eye3D] Fallback loading progress:", Math.round((progress.loaded / progress.total) * 100) + "%");
+                  }
+                },
+                (fallbackErr) => {
+                  console.error("[Eye3D] Both models failed to load:", fallbackErr);
+                  setError("فشل تحميل النموذج ثلاثي الأبعاد");
+                  setLoading(false);
+                }
+              );
+            }
+          }
+        );
+      }
 
       // Animation loop
       let elapsedTime = 0;
@@ -558,6 +598,7 @@ export default function Eye3D({
 
       const animate = () => {
         animationFrameId = requestAnimationFrame(animate);
+        if (!isComponentVisible) return; // Skip rendering when offscreen to preserve GPU/CPU cycles!
 
         const now = performance.now();
         elapsedTime += (now - lastTime) / 1000;
@@ -708,6 +749,7 @@ export default function Eye3D({
         container.removeEventListener("pointerup", handlePointerUp);
         container.removeEventListener("pointercancel", handlePointerUp);
         resizeObserver.disconnect();
+        visibilityObserver.disconnect(); // Clean up visibility observer
       };
       } catch (err) {
         console.error("[Eye3D] WebGL / ThreeJS initialization error:", err);
