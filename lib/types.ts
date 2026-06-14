@@ -8,6 +8,7 @@ export type DiagnosisSeverity = "Normal" | "Mild" | "Moderate" | "Severe" | "Cri
 
 export interface AnalysisResult {
   diagnosis: string;
+  diagnosisAr?: string;
   confidence: number; // 0–1
   severity: DiagnosisSeverity;
   stage: string;

@@ -123,6 +123,143 @@ function ZoneBar({ zone, delay }: { zone: AnalysisResult["affectedZones"][0]; de
   );
 }
 
+// ── Patient Vision Simulator Component ──────────────────────
+function VisionSimulator({ severity }: { severity: string }) {
+  const [selectedSeverity, setSelectedSeverity] = useState(severity);
+  const [selectedScene, setSelectedScene] = useState("snellen");
+
+  const SCENES = [
+    { id: "snellen", name: "لوحة فحص النظر" },
+    { id: "street", name: "شارع المدينة", url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=600&q=80" },
+    { id: "room", name: "غرفة المعيشة", url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" },
+    { id: "book", name: "قراءة كتاب", url: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" },
+  ];
+
+  const getFilterStyle = (sev: string) => {
+    const s = sev.toLowerCase();
+    if (s.includes("normal") || s.includes("healthy")) {
+      return { filter: "none", opacity: 1 };
+    }
+    if (s.includes("mild")) {
+      return { filter: "blur(2px) contrast(0.95)", opacity: 0.95 };
+    }
+    if (s.includes("moderate")) {
+      return { filter: "blur(4.5px) contrast(0.85) saturate(0.75)", opacity: 0.9 };
+    }
+    if (s.includes("severe")) {
+      return { filter: "blur(8px) contrast(0.7) saturate(0.6)", opacity: 0.85 };
+    }
+    if (s.includes("proliferative") || s.includes("critical") || s.includes("urgent") || s.includes("severe dr") || s.includes("critical dr")) {
+      return { filter: "blur(14px) contrast(0.55) saturate(0.45)", opacity: 0.75 };
+    }
+    return { filter: "none", opacity: 1 };
+  };
+
+  const getSeverityLabel = (sev: string) => {
+    const s = sev.toLowerCase();
+    if (s.includes("normal") || s.includes("healthy")) return "سليمة (Normal)";
+    if (s.includes("mild")) return "خفيفة (Mild)";
+    if (s.includes("moderate")) return "متوسطة (Moderate)";
+    if (s.includes("severe")) return "شديدة (Severe)";
+    return "حرجة (Critical)";
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* Scene Selector */}
+      <div className="flex justify-between items-center text-xs flex-wrap gap-2">
+        <span className="text-slate-400 font-semibold">المشهد المحاكى:</span>
+        <div className="flex gap-1 bg-white/5 p-0.5 rounded-lg border border-white/5">
+          {SCENES.map((scene) => (
+            <button
+              key={scene.id}
+              onClick={() => setSelectedScene(scene.id)}
+              className={`px-2.5 py-1 text-[10px] rounded-md font-bold transition-all duration-150 cursor-pointer ${
+                selectedScene === scene.id
+                  ? "bg-violet-600 text-white font-bold"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              {scene.id === "snellen" ? "📋 لوحة النظر" : scene.id === "street" ? "🚦 شارع" : scene.id === "room" ? "🛋️ غرفة" : "📖 كتاب"}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Severity Selector */}
+      <div className="flex flex-wrap gap-1 bg-slate-950/60 p-1 rounded-xl justify-center border border-white/5">
+        {["Normal", "Mild", "Moderate", "Severe", "Critical"].map((s) => (
+          <button
+            key={s}
+            onClick={() => setSelectedSeverity(s)}
+            className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold rounded-lg transition-all duration-200 cursor-pointer ${
+              selectedSeverity.toLowerCase().includes(s.toLowerCase())
+                ? "bg-cyan-500 text-slate-950 font-bold"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            {s === "Normal" ? "سليم" : s === "Mild" ? "خفيف" : s === "Moderate" ? "متوسط" : s === "Severe" ? "شديد" : "حرج"}
+          </button>
+        ))}
+      </div>
+
+      {/* Screen Preview Container */}
+      <div className="relative rounded-xl overflow-hidden border border-white/10 bg-slate-950 flex items-center justify-center h-[200px] w-full">
+        {selectedScene === "snellen" ? (
+          /* Snellen Eye Chart (crisp SVG/HTML rendering) */
+          <div 
+            className="text-center font-mono select-none transition-all duration-500 relative w-full h-full flex flex-col justify-center items-center p-6 bg-slate-900" 
+            style={getFilterStyle(selectedSeverity)}
+          >
+            <div className="text-3xl font-bold text-white tracking-widest leading-none mb-1">E</div>
+            <div className="text-xl font-bold text-white tracking-widest leading-none mb-1">F P</div>
+            <div className="text-base font-bold text-white tracking-widest leading-none mb-1">T O Z</div>
+            <div className="text-xs font-bold text-white tracking-widest leading-none mb-1">L P E D</div>
+            <div className="text-[10px] font-bold text-white tracking-widest leading-none mb-0.5">P E C F D</div>
+            <div className="text-[8px] font-bold text-white tracking-widest leading-none">E D F C Z P</div>
+
+            {/* Red/Green reference bars */}
+            <div className="w-24 h-1 bg-red-600 mt-2 rounded-full" />
+            <div className="w-24 h-1 bg-emerald-600 mt-1 rounded-full" />
+          </div>
+        ) : (
+          /* Unsplash Image Scenes */
+          <img
+            src={SCENES.find(s => s.id === selectedScene)?.url}
+            alt="Simulated Scene"
+            className="w-full h-full object-cover transition-all duration-500"
+            style={getFilterStyle(selectedSeverity)}
+          />
+        )}
+
+        {/* Spot Overlays (Scotomas) & Hemorrhages for severe cases */}
+        {(selectedSeverity.toLowerCase().includes("severe") || selectedSeverity.toLowerCase().includes("critical") || selectedSeverity.toLowerCase().includes("proliferative")) && (
+          <div className="absolute inset-0 pointer-events-none transition-all duration-500 overflow-hidden">
+            {/* Dark blotches representing diabetic retinopathy scotomas */}
+            <div className="absolute top-[20%] left-[30%] w-12 h-10 bg-black/90 rounded-full blur-md" />
+            <div className="absolute bottom-[25%] right-[20%] w-14 h-12 bg-black/85 rounded-full blur-lg" />
+            <div className="absolute top-[45%] left-[45%] w-10 h-10 bg-black/80 rounded-full blur-md" />
+            {selectedSeverity.toLowerCase().includes("critical") && (
+              <>
+                <div className="absolute bottom-[15%] left-[20%] w-16 h-14 bg-black/95 rounded-full blur-xl animate-pulse" />
+                <div className="absolute top-[30%] right-[35%] w-12 h-12 bg-red-950/60 rounded-full blur-md" />
+                {/* Vitreous Hemorrhage blood splatters */}
+                <div className="absolute top-[10%] right-[15%] w-20 h-12 bg-red-800/25 rounded-full blur-lg" />
+                <div className="absolute bottom-[20%] left-[35%] w-14 h-10 bg-red-900/30 rounded-full blur-md" />
+              </>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div className="flex justify-between items-center text-[10px] sm:text-xs text-slate-400">
+        <span>محاكاة سريرية تقريبية للرؤية</span>
+        <span>المستعرض حالياً: <strong style={{ color: "var(--cyan)" }}>{getSeverityLabel(selectedSeverity)}</strong></span>
+      </div>
+    </div>
+  );
+}
+
 // ── Main Component ─────────────────────────────────────────
 export default function DiagnosisPanel({ result, isVisible, previewUrl }: DiagnosisPanelProps) {
   const [copied, setCopied] = useState(false);
@@ -214,6 +351,14 @@ export default function DiagnosisPanel({ result, isVisible, previewUrl }: Diagno
             <p className="text-[10.5px] text-slate-400 text-center leading-relaxed">
               نموذج تفاعلي يعرض سرعة دوران متزايدة ووهجاً تحذيرياً بناءً على شدة الإصابة. مرر لتدوير العين، وانقر فوق أزرار التشريح بالأسفل لتركيز العرض.
             </p>
+          </div>
+
+          {/* ── Patient Vision Simulator ── */}
+          <div className="glass-strong rounded-2xl p-5 space-y-4 relative overflow-hidden" style={{ border: "1px solid rgba(0, 212, 255, 0.2)" }}>
+            <h3 className="font-display text-xs font-bold uppercase tracking-widest text-right border-b border-white/5 pb-2.5" style={{ color: "var(--cyan)" }}>
+              👁️ محاكي رؤية المريض التفاعلي (Patient Vision Simulator)
+            </h3>
+            <VisionSimulator severity={result.severity} />
           </div>
 
           {/* ── Diagnosis Header ── */}

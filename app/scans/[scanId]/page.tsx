@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AnalysisResult, DiagnosisSeverity } from "@/lib/types";
 import { SEVERITY_CONFIG } from "@/lib/constants";
 import RetinalFundusHeatmap from "@/components/results/RetinalFundusHeatmap";
+import PrintableReport from "@/components/results/PrintableReport";
 import dynamic from "next/dynamic";
 
 const Eye3D = dynamic(() => import("@/components/ui/Eye3D"), {
@@ -109,7 +110,7 @@ function ReportDashboard({ scan }: { scan: AnalysisResult }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="space-y-6 max-w-4xl mx-auto w-full"
+      className="space-y-6 max-w-4xl mx-auto w-full print:hidden"
     >
       {/* 🏥 CLINICAL PRINT-ONLY HEADER */}
       <div className="hidden print:flex justify-between items-center border-b border-slate-300 pb-4 mb-6 text-slate-800 text-right font-display flex-row-reverse w-full">
@@ -435,11 +436,11 @@ export default function ScanReportPage() {
 
   return (
     <div className="min-h-screen relative flex flex-col justify-between">
-      <div className="gradient-mesh" />
-      <div className="neural-grid" />
+      <div className="gradient-mesh print:hidden" />
+      <div className="neural-grid print:hidden" />
 
       {/* Main Body */}
-      <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center px-6 py-12">
+      <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center px-6 py-12 print:hidden">
         <AnimatePresence mode="wait">
           
           {/* ⏳ 1. LOADING STATE */}
@@ -609,9 +610,15 @@ export default function ScanReportPage() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 w-full text-center py-6 border-t border-white/5 text-[10px] text-slate-600 bg-slate-950/20 backdrop-blur-sm">
+      <div className="relative z-10 w-full text-center py-6 border-t border-white/5 text-[10px] text-slate-600 bg-slate-950/20 backdrop-blur-sm print:hidden">
         نظام تشفير السجلات الطبية الآمن · جميع الحقوق محفوظة لـ RetinaScan AI © 2026
       </div>
+
+      {!loading && !error && unlocked && scanData && (
+        <div className="hidden print:block font-display" dir="rtl">
+          <PrintableReport result={scanData} />
+        </div>
+      )}
     </div>
   );
 }

@@ -765,6 +765,9 @@ def randomize_heatmap(coords):
 app = Flask(__name__)
 CORS(app)
 
+import hashlib
+PREDICTION_CACHE = {}
+
 # Load model at startup
 print("[INFO] Loading model...")
 model = load_model()
@@ -791,6 +794,15 @@ def predict_endpoint():
         if not is_retina:
             return jsonify({"error": val_msg}), 400
 
+        # Compute MD5 hash for caching
+        image_hash = hashlib.md5(image_bytes).hexdigest()
+        if image_hash in PREDICTION_CACHE:
+            print(f"[CACHE HIT] Returning cached response for MD5: {image_hash}")
+            cached_response = PREDICTION_CACHE[image_hash].copy()
+            cached_response["processing_time_ms"] = 0.0
+            cached_response["cached"] = True
+            return jsonify(cached_response)
+
         # Run prediction
         class_id, confidence, all_probs, heatmap_base64, elapsed_ms = predict(model, image)
 
@@ -810,7 +822,11 @@ def predict_endpoint():
             "heatmap_base64": heatmap_base64,
             "processing_time_ms": round(elapsed_ms, 1),
             "model_version": "RetinaDR-v5.0-TTA",
+            "cached": False,
         }
+
+        # Save to cache
+        PREDICTION_CACHE[image_hash] = response
 
         print(f"[PREDICT] {CLASS_NAMES[class_id]} (conf={confidence:.3f}) in {elapsed_ms:.0f}ms")
         return jsonify(response)

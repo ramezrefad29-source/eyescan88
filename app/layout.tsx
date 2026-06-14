@@ -36,6 +36,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var savedTheme = localStorage.getItem('eyescan_theme');
+                  if (savedTheme) {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                  } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="antialiased">
         {children}
         <ConsoleDebug />

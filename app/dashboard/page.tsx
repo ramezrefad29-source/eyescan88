@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import UploadZone from "@/components/upload/UploadZone";
 import DiagnosisPanel from "@/components/results/DiagnosisPanel";
+import PrintableReport from "@/components/results/PrintableReport";
 import { UploadState, UploadedFile, AnalysisResult } from "@/lib/types";
 import { MOCK_RESULT, generatePasscode } from "@/lib/constants";
 
@@ -217,10 +218,10 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen relative">
-      <div className="gradient-mesh" />
-      <div className="neural-grid" />
+      <div className="gradient-mesh print:hidden" />
+      <div className="neural-grid print:hidden" />
 
-      <div className="relative z-10">
+      <div className="relative z-10 print:hidden">
         <Navbar />
 
         {/* ── Page Header ── */}
@@ -369,6 +370,12 @@ export default function DashboardPage() {
           </p>
         </div>
       </div>
+
+      {result && (
+        <div className="hidden print:block font-display" dir="rtl">
+          <PrintableReport result={result} previewUrl={uploadedFile?.previewUrl} />
+        </div>
+      )}
     </div>
   );
 }

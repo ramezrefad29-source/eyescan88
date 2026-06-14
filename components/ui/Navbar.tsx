@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -15,6 +16,25 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("eyescan_theme") as "dark" | "light" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    } else {
+      setTheme("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("eyescan_theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
 
   return (
     <motion.nav
@@ -97,6 +117,28 @@ export default function Navbar() {
               {MODEL_VERSION} · {MODEL_ACCURACY} acc
             </span>
           </div>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-xl border bg-white/[0.02] hover:bg-white/[0.08] active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center text-sm print:hidden"
+            style={{
+              borderColor: "var(--glass-border)",
+              color: "var(--cyan)",
+              width: "36px",
+              height: "36px"
+            }}
+            title={theme === "dark" ? "تفعيل الوضع الساطع (Clinical Light Mode)" : "تفعيل الوضع الداكن (Cyberpunk Dark)"}
+          >
+            <motion.div
+              key={theme}
+              initial={{ rotate: -90, scale: 0.8, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              transition={{ duration: 0.25 }}
+            >
+              {theme === "dark" ? "☀️" : "🌙"}
+            </motion.div>
+          </button>
 
           <Link
             href="/dashboard"

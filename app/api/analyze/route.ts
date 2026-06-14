@@ -71,6 +71,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<ApiAnalyzeRes
 
     const result: AnalysisResult = {
       diagnosis: modelData.diagnosis as string,
+      diagnosisAr: modelData.diagnosis_ar as string | undefined,
       confidence: modelData.confidence as number,
       severity: modelData.severity as AnalysisResult["severity"],
       stage: modelData.stage as string,

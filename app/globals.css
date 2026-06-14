@@ -50,6 +50,115 @@
 }
 
 /* =============================================
+   CLINICAL LIGHT THEME SYSTEM
+   ============================================= */
+[data-theme="light"] {
+  /* Core Palette Overrides */
+  --bg-void:    #f8fafc;
+  --bg-deep:    #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-elevated:#e2e8f0;
+
+  --cyan:       #0284c7;
+  --cyan-dim:   rgba(2,132,199,0.08);
+  --cyan-glow:  rgba(2,132,199,0.18);
+  --violet:     #6d28d9;
+  --violet-dim: rgba(109,40,217,0.08);
+  --violet-glow:rgba(109,40,217,0.18);
+  --indigo:     #4338ca;
+  --teal:       #0d9488;
+
+  --success:    #059669;
+  --warning:    #d97706;
+  --danger:     #dc2626;
+  --orange:     #ea580c;
+
+  --text-primary:  #0f172a;
+  --text-secondary:#475569;
+  --text-muted:    #64748b;
+
+  /* Glass Overrides for Light Mode */
+  --glass-bg:          rgba(15,23,42,0.02);
+  --glass-bg-hover:    rgba(15,23,42,0.04);
+  --glass-border:      rgba(15,23,42,0.08);
+  --glass-border-hover:rgba(2,132,199,0.25);
+
+  /* Shadows */
+  --shadow-cyan:  0 10px 30px rgba(2,132,199,0.05);
+  --shadow-violet:0 10px 30px rgba(109,40,217,0.05);
+  --shadow-card:  0 12px 40px rgba(15,23,42,0.04);
+}
+
+[data-theme="light"] .glass-strong {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(2, 132, 199, 0.15);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .gradient-mesh {
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 15%, rgba(2,132,199,0.04) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(109,40,217,0.05) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 55% 45%, rgba(67,56,202,0.02) 0%, transparent 70%),
+    var(--bg-void);
+  animation: meshPulseLight 14s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .neural-grid {
+  background-image:
+    linear-gradient(rgba(2,132,199,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2,132,199,0.015) 1px, transparent 1px);
+}
+
+[data-theme="light"] .btn-primary {
+  background: linear-gradient(135deg, var(--cyan) 0%, #02649c 100%);
+  color: #ffffff;
+}
+
+[data-theme="light"] .btn-primary:hover {
+  box-shadow: 0 10px 36px rgba(2, 132, 199, 0.3);
+}
+
+/* Force light text inside forms and inputs in light mode */
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .text-white {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .font-bold.text-white {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] h1.text-white,
+[data-theme="light"] h2.text-white,
+[data-theme="light"] h3.text-white,
+[data-theme="light"] h4.text-white {
+  color: var(--text-primary) !important;
+}
+
+@keyframes meshPulseLight {
+  0% {
+    background:
+      radial-gradient(ellipse 70% 55% at 15% 15%, rgba(2,132,199,0.04) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 85% 85%, rgba(109,40,217,0.05) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 55% at 55% 45%, rgba(67,56,202,0.02) 0%, transparent 70%),
+      var(--bg-void);
+  }
+  100% {
+    background:
+      radial-gradient(ellipse 70% 55% at 25% 25%, rgba(2,132,199,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 75% 75%, rgba(109,40,217,0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 45% 55% at 50% 50%, rgba(67,56,202,0.04) 0%, transparent 70%),
+      var(--bg-void);
+  }
+}
+
+/* =============================================
    RESET & BASE
    ============================================= */
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
@@ -432,9 +541,6 @@ body {
   form,
   .fixed,
   .absolute:has(button),
-  .glass-strong:has(h3:contains("Patient Access")),
-  div:has(h3:contains("Patient Access")),
-  div:has(span:contains("Passcode")),
   .print\:hidden {
     display: none !important;
   }
@@ -495,7 +601,7 @@ body {
   }
 
   /* Clinical progress bars */
-  .h-1.5, .h-2 {
+  .h-1\.5, .h-2 {
     height: 6px !important;
     background: #f1f5f9 !important;
     border: 1px solid #cbd5e1 !important;
